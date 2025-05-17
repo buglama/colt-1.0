@@ -1,155 +1,114 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, FlatList } from 'react-native';
-import { colors } from '@/src/constants/theme'; // Dizaynınıza uyğun olmalıdır
+import {
+    View,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity,
+    ScrollView,
+    Alert,
+} from 'react-native';
+import Text from '@/src/components/ui/Text';
+import { colors } from '@/src/constants/theme';
 
-const WithdrawScreen = () => {
+export default function WithdrawScreen() {
     const [amount, setAmount] = useState('');
-    const [balance, setBalance] = useState(46.75); // Məsələn balans 500 AZN-dir
-    const [withdrawHistory, setWithdrawHistory] = useState([
-        { id: '1', amount: 100, date: '2025-05-01' },
-        { id: '2', amount: 50, date: '2025-05-05' },
-    ]); // Çıxarış tarixçəsi nümunəsi
+    const currentBalance = 125.75; // Burda istəsən backend-dən çəkmə funksiyası da əlavə edərik
 
     const handleWithdraw = () => {
-        if (parseFloat(amount) > balance) {
-            alert('Balansınızdan çox pul çıxara bilməzsiniz.');
-        } else if (parseFloat(amount) <= 0) {
-            alert('Zəhmət olmasa müsbət bir məbləğ daxil edin.');
-        } else {
-            setBalance(balance - parseFloat(amount)); // Balansı azalt
-            setWithdrawHistory([
-                ...withdrawHistory,
-                { id: String(withdrawHistory.length + 1), amount: parseFloat(amount), date: new Date().toLocaleDateString() },
-            ]); // Yeni çıxarışı tarixçəyə əlavə et
-            alert(`Uğurla ${amount} AZN çıxarış edilib!`);
+        if (!amount || isNaN(Number(amount)) || Number(amount) <= 0) {
+            Alert.alert('Xəta', 'Zəhmət olmasa düzgün məbləğ daxil et.');
+            return;
         }
+
+        if (Number(amount) > currentBalance) {
+            Alert.alert('Balans kifayət etmir', 'Bu məbləği çıxarmaq üçün balansın kifayət deyil.');
+            return;
+        }
+
+        Alert.alert('Uğurlu', `${amount} AZN çıxarıldı. ✅`);
+        setAmount('');
     };
 
     return (
-        <ScrollView contentContainerStyle={styles.content}>
-            <Text style={styles.title}>Çıxarış Edin</Text>
-            <Text style={styles.subtitle}>Balans: {balance} AZN</Text>
+        <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.content}>
+                <View style={styles.header}>
+                    <Text variant="h3" weight="bold">Withdraw</Text>
+                    <Text variant="body" color="textSecondary" style={{ marginTop: 6 }}>
+                        Transfer your cashback balance to your account.
+                    </Text>
+                </View>
 
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.input}
-                    keyboardType="numeric"
-                    placeholder="Məbləği daxil edin"
-                    value={amount}
-                    onChangeText={setAmount}
-                />
-            </View>
+                <View style={styles.card}>
+                    <Text variant="body" weight="medium" style={styles.label}>Available Balance</Text>
+                    <Text variant="h3" weight="bold" style={styles.balance}>
+                        {currentBalance.toFixed(2)} AZN
+                    </Text>
 
-            <TouchableOpacity style={styles.button} onPress={handleWithdraw}>
-                <Text style={styles.buttonText}>Çıxarış Et</Text>
-            </TouchableOpacity>
-
-            {/* Çıxarış tarixçəsi */}
-            <View style={styles.historyContainer}>
-                <Text style={styles.historyTitle}>Çıxarış Tarixçəsi</Text>
-                {withdrawHistory.length === 0 ? (
-                    <Text style={styles.noHistory}>Heç bir çıxarış yoxdur.</Text>
-                ) : (
-                    <FlatList
-                        data={withdrawHistory}
-                        keyExtractor={(item) => item.id}
-                        renderItem={({ item }) => (
-                            <View style={styles.historyItem}>
-                                <Text style={styles.historyText}>
-                                    {item.amount} AZN - {item.date}
-                                </Text>
-                            </View>
-                        )}
+                    <Text variant="body" weight="medium" style={styles.label}>Withdraw Amount</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={amount}
+                        onChangeText={setAmount}
+                        placeholder="e.g. 25"
+                        keyboardType="numeric"
+                        placeholderTextColor="#aaa"
                     />
-                )}
-            </View>
 
-            {/* Məlumatlı xəbərdarlıq */}
-            <View style={styles.warningContainer}>
-                <Text style={styles.warningText}>
-                    Qeyd: Çıxarış etdikdən sonra balansınız dərhal yenilənəcəkdir. Hər hansı bir problem
-                    ilə qarşılaşsanız, dəstək xidmətinə müraciət edin.
-                </Text>
-            </View>
-        </ScrollView>
+                    <TouchableOpacity style={styles.button} onPress={handleWithdraw}>
+                        <Text variant="body" weight="semibold" style={{ color: '#fff' }}>
+                            Withdraw
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+        </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: colors.gray50,
+    },
     content: {
-        flexGrow: 1,
-        padding: 24,
-        justifyContent: 'center',
-        backgroundColor: colors.gray50, // Tətbiqdəki ümumi fon rəngi
+        padding: 16,
+        paddingBottom: 40,
     },
-    title: {
-        textAlign: 'center',
-        marginBottom: 16,
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: colors.primary, // Başlıq rəngi
+    header: {
+        marginTop: 60,
+        marginBottom: 24,
     },
-    subtitle: {
-        textAlign: 'center',
-        marginBottom: 32,
-        color: colors.textSecondary, // Sub başlıq rəngi
-        fontSize: 16,
+    card: {
+        backgroundColor: colors.white,
+        borderRadius: 12,
+        padding: 16,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.08,
+        shadowRadius: 3.84,
+        elevation: 3,
     },
-    inputContainer: {
-        marginBottom: 32,
+    label: {
+        marginBottom: 6,
+        marginTop: 16,
+    },
+    balance: {
+        marginBottom: 20,
+        color: colors.primary,
     },
     input: {
-        width: '100%',
-        height: 56,
-        borderWidth: 1,
-        borderColor: colors.gray300,
-        borderRadius: 8,
-        paddingHorizontal: 16,
+        backgroundColor: '#f5f5f5',
+        borderRadius: 10,
+        padding: 14,
         fontSize: 16,
+        color: '#111',
     },
     button: {
-        height: 56,
         backgroundColor: colors.primary,
-        borderRadius: 8,
-        justifyContent: 'center',
+        paddingVertical: 14,
+        borderRadius: 10,
         alignItems: 'center',
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    historyContainer: {
-        marginTop: 32,
-    },
-    historyTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 8,
-    },
-    historyItem: {
-        paddingVertical: 10,
-        borderBottomWidth: 1,
-        borderColor: colors.gray300,
-    },
-    historyText: {
-        fontSize: 16,
-        color: colors.successDark,
-    },
-    noHistory: {
-        fontSize: 16,
-        color: colors.textSecondary,
-    },
-    warningContainer: {
-        marginTop: 16,
-        padding: 16,
-        backgroundColor: colors.gray200,
-        borderRadius: 8,
-    },
-    warningText: {
-        fontSize: 14,
-        color: colors.danger,
+        marginTop: 24,
     },
 });
-
-export default WithdrawScreen;

@@ -79,7 +79,7 @@ export default function ProfileScreen() {
                 {user?.fullName || 'Fərid Hümbətov'}
               </Text>
               <Text variant="body2" color="textSecondary">
-                {user?.email || 'thefeerid@protonşnet'}
+                {user?.email || 'thefeerid@proton.net'}
               </Text>
               <Text variant="body2" color="textSecondary">
                 {user?.phone || '+991 (70) 814-5414'}

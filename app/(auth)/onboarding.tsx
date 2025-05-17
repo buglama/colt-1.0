@@ -25,7 +25,7 @@ const slides = [
     title: 'Earn Cashback',
     description: 'Get cashback on every order you place. The more you order, the more you earn.',
     image:
-      'https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/47344/dollar-currency-money-us-dollar-47344.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   },
   {
     id: '3',
@@ -33,7 +33,7 @@ const slides = [
     description:
       'Invite friends to join and earn cashback when they place orders. Build your referral network!',
     image:
-      'https://images.pexels.com/photos/5921469/pexels-photo-5921469.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/1000445/pexels-photo-1000445.jpeg',
   },
 ];
 

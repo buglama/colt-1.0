@@ -111,38 +111,28 @@ export const mockFeaturedProducts: Product[] = [
 export const mockCategories: Category[] = [
   {
     id: '1',
-    name: 'Pizza',
-    icon: 'https://images.pexels.com/photos/905847/pexels-photo-905847.jpeg?auto=compress&cs=tinysrgb&w=100',
+    name: 'Markets',
+    icon: 'https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&w=100',
   },
   {
     id: '2',
-    name: 'Burgers',
-    icon: 'https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=100',
+    name: 'Restaurants',
+    icon: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&w=100',
   },
   {
     id: '3',
-    name: 'Sushi',
-    icon: 'https://images.pexels.com/photos/995767/pexels-photo-995767.jpeg?auto=compress&cs=tinysrgb&w=100',
+    name: 'Apteks',
+    icon: 'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&w=100',
   },
   {
     id: '4',
-    name: 'Mexican',
-    icon: 'https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=100',
+    name: 'Electronics',
+    icon: 'https://images.pexels.com/photos/1054397/pexels-photo-1054397.jpeg?auto=compress&w=100',
   },
   {
     id: '5',
-    name: 'Italian',
-    icon: 'https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=100',
-  },
-  {
-    id: '6',
-    name: 'Asian',
-    icon: 'https://images.pexels.com/photos/1001773/pexels-photo-1001773.jpeg?auto=compress&cs=tinysrgb&w=100',
-  },
-  {
-    id: '7',
-    name: 'Desserts',
-    icon: 'https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=100',
+    name: 'Zoomarkets',
+    icon: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&w=100',
   },
 ];
 

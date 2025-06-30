@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  RefreshControl
+  RefreshControl,
+  Dimensions
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Search, MapPin, Filter, ShoppingBag } from 'lucide-react-native';
@@ -20,6 +21,38 @@ import { Restaurant, Product, Category } from '@/src/types';
 import { mockRestaurants, mockFeaturedProducts, mockCategories } from '@/src/data/mockData';
 import { useCart } from '@/src/context/CartContext';
 
+const offerImages = [
+  {
+    id: '1',
+    image: 'https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&w=800&q=80',
+    title: '20% OFF on First Order!',
+  },
+  {
+    id: '2',
+    image: 'https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=800&q=80',
+    title: 'Free Delivery This Week',
+  },
+  {
+    id: '3',
+    image: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&w=800&q=80',
+    title: 'Buy 1 Get 1 Free',
+  },
+  {
+    id: '4',
+    image: 'https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=800&q=80',
+    title: 'Pizza Night Special',
+  },
+  {
+    id: '5',
+    image: 'https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=800&q=80',
+    title: 'Sushi Lovers Discount',
+  },
+];
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const CAROUSEL_ITEM_HEIGHT = 200;
+const CAROUSEL_ITEM_RADIUS = 8;
+
 export default function HomeScreen() {
   const router = useRouter();
   const { cart } = useCart();
@@ -31,10 +64,8 @@ export default function HomeScreen() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>(mockFeaturedProducts);
   const [categories, setCategories] = useState<Category[]>(mockCategories);
 
-  const filteredRestaurants = selectedCategory
-    ? restaurants.filter(restaurant =>
-      restaurant.categories.includes(selectedCategory))
-    : restaurants;
+  // Always show all restaurants, no filtering
+  const filteredRestaurants = restaurants;
 
   const renderCategoryItem = ({ item }: { item: Category }) => (
     <TouchableOpacity
@@ -42,9 +73,7 @@ export default function HomeScreen() {
         styles.categoryItem,
         selectedCategory === item.name && styles.selectedCategoryItem,
       ]}
-      onPress={() => {
-        setSelectedCategory(selectedCategory === item.name ? null : item.name);
-      }}
+      onPress={() => router.push({ pathname: '/category/[id]', params: { id: item.name } })}
     >
       <View
         style={[
@@ -75,6 +104,33 @@ export default function HomeScreen() {
   const navigateToCart = () => {
     router.push('/cart');
   };
+
+  const scrollRef = useRef<ScrollView>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex(prev =>
+        prev === offerImages.length - 1 ? 0 : prev + 1
+      );
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      if (currentIndex === 0) {
+        // Instantly jump to first image (no animation)
+        scrollRef.current.scrollTo({ x: 0, animated: false });
+      } else {
+        scrollRef.current.scrollTo({
+          x: currentIndex * (SCREEN_WIDTH - 32),
+          animated: true,
+        });
+      }
+    }
+  }, [currentIndex]);
 
   return (
     <View style={styles.container}>
@@ -124,6 +180,49 @@ export default function HomeScreen() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.categoriesList}
           />
+        </View>
+
+        <View style={styles.carouselContainer}>
+          <ScrollView
+            ref={scrollRef}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={16}
+            style={styles.carouselScroll}
+            contentContainerStyle={{}}
+          >
+            {offerImages.map((offer) => (
+              <View
+                key={offer.id}
+                style={[
+                  styles.carouselItem,
+                  {
+                    width: SCREEN_WIDTH - 32,
+                    height: CAROUSEL_ITEM_HEIGHT,
+                  },
+                ]}
+              >
+                <Image
+                  source={{ uri: offer.image }}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                />
+                <View style={styles.carouselOverlay}>
+                  <Text
+                    variant="h4"
+                    weight="bold"
+                    color="white"
+                    style={styles.carouselText}
+                  >
+                    {offer.title}
+                  </Text>
+                </View>
+              </View>
+            ))}
+          </ScrollView>
         </View>
 
         <View style={styles.section}>
@@ -260,6 +359,33 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     padding: 8,
+  },
+  carouselContainer: {
+    marginTop: 16,
+    marginBottom: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
+    borderRadius: CAROUSEL_ITEM_RADIUS,
+    overflow: 'hidden',
+  },
+  carouselScroll: {
+    borderRadius: CAROUSEL_ITEM_RADIUS,
+  },
+  carouselItem: {
+    position: 'relative',
+    backgroundColor: colors.gray100,
+    overflow: 'hidden',
+  },
+  carouselOverlay: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    padding: 12,
+  },
+  carouselText: {
+    color: '#fff',
   },
   categoriesContainer: {
     backgroundColor: colors.white,

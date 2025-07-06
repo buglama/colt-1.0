@@ -1,11 +1,15 @@
 import { useRouter } from 'expo-router';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function IndexRedirect() {
     const router = useRouter();
+    const redirected = useRef(false);
 
     useEffect(() => {
-        router.replace('/onboarding');
+        if (!redirected.current) {
+            redirected.current = true;
+            router.replace('/onboarding');
+        }
     }, []);
 
     return null;

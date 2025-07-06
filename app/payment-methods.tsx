@@ -14,8 +14,8 @@ import { colors } from '@/src/constants/theme';
 export default function PaymentMethodsScreen() {
     const router = useRouter();
     const [paymentMethods, setPaymentMethods] = useState([
-        { id: '1', type: 'Credit Card', last4: '1234' },
-        { id: '2', type: 'Debit Card', last4: '5678' },
+        { id: '1', type: 'Kredit kartı', last4: '1234' },
+        { id: '2', type: 'Debit kartı', last4: '5678' },
     ]);
 
     const handleAddPaymentMethod = () => {
@@ -25,12 +25,12 @@ export default function PaymentMethodsScreen() {
 
     const handleRemovePaymentMethod = (id: string) => {
         Alert.alert(
-            'Remove Payment Method',
-            'Are you sure you want to remove this payment method?',
+            'Ödəniş metodunu silin',
+            'Bu ödəniş üsulunu silmək istədiyinizə əminsiniz?',
             [
-                { text: 'Cancel', style: 'cancel' },
+                { text: 'Ləğv et', style: 'cancel' },
                 {
-                    text: 'Remove',
+                    text: 'Sil',
                     onPress: () => {
                         setPaymentMethods((prevMethods) =>
                             prevMethods.filter((method) => method.id !== id)
@@ -50,13 +50,13 @@ export default function PaymentMethodsScreen() {
             >
                 <View style={styles.header}>
                     <Text variant="h3" weight="bold" style={styles.title}>
-                        Payment Methods
+                        Ödəniş Metodları
                     </Text>
                 </View>
 
                 <View style={styles.sectionTitle}>
                     <Text variant="h4" weight="semibold">
-                        Your Payment Methods
+                        Sənin ödəniş metodların
                     </Text>
                 </View>
 
@@ -70,7 +70,7 @@ export default function PaymentMethodsScreen() {
                                         {method.type}
                                     </Text>
                                     <Text variant="caption" color="textSecondary">
-                                        Ending in {method.last4}
+                                        Sonu {method.last4}
                                     </Text>
                                 </View>
                             </View>
@@ -79,7 +79,7 @@ export default function PaymentMethodsScreen() {
                                 onPress={() => handleRemovePaymentMethod(method.id)}
                             >
                                 <Text variant="body" weight="semibold" color="danger">
-                                    Remove
+                                    Sil
                                 </Text>
                             </TouchableOpacity>
                         </View>
@@ -92,7 +92,7 @@ export default function PaymentMethodsScreen() {
                 >
                     <PlusCircle size={24} color={colors.primary} />
                     <Text variant="body" weight="semibold" color="primary">
-                        Add New Payment Method
+                        Yeni ödəniş metodu əlavə et
                     </Text>
                 </TouchableOpacity>
             </ScrollView>

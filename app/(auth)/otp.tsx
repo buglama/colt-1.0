@@ -25,7 +25,7 @@ const OTPVerificationScreen = () => {
     const handleContinue = () => {
         const fullOtp = otp.join('');
         if (fromSignup === 'true') {
-            router.push('/referral');
+            router.push('/referralinv');
         } else {
             router.push('/(tabs)');
         }

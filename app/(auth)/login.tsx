@@ -26,6 +26,8 @@ export default function LoginScreen() {
   const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async () => {
+    if (loading) return;
+
     if (!email.trim()) {
       setError('Please enter your email');
       return;

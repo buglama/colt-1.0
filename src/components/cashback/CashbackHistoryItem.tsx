@@ -13,11 +13,11 @@ interface CashbackHistoryItemProps {
 export default function CashbackHistoryItem({ transaction }: CashbackHistoryItemProps) {
   const getTransactionIcon = () => {
     switch (transaction.type) {
-      case 'order':
+      case 'Sifariş':
         return <ShoppingBag size={24} color={colors.primary} />;
-      case 'referral':
+      case 'Referal':
         return <TrendingUp size={24} color={colors.secondary} />;
-      case 'withdrawal':
+      case 'Çıxarış':
         return <ArrowDownToLine size={24} color={colors.textSecondary} />;
       default:
         return <ShoppingBag size={24} color={colors.primary} />;
@@ -25,7 +25,7 @@ export default function CashbackHistoryItem({ transaction }: CashbackHistoryItem
   };
 
   const getAmountColor = () => {
-    if (transaction.type === 'withdrawal') {
+    if (transaction.type === 'Çıxarış') {
       return colors.danger;
     }
     return colors.success;
@@ -33,25 +33,25 @@ export default function CashbackHistoryItem({ transaction }: CashbackHistoryItem
 
   const getTransactionTitle = () => {
     switch (transaction.type) {
-      case 'order':
-        return `Order #${transaction.orderId}`;
-      case 'referral':
-        return `Referral: ${transaction.referredUser}`;
-      case 'withdrawal':
-        return 'Withdrawal';
+      case 'Sifariş':
+        return `Sifariş #${transaction.orderId}`;
+      case 'Referal':
+        return `Referal: ${transaction.referredUser}`;
+      case 'Çıxarış':
+        return 'Çıxarış';
       default:
-        return 'Transaction';
+        return 'Əməliyyat';
     }
   };
 
   const getTransactionDescription = () => {
     switch (transaction.type) {
-      case 'order':
-        return `${transaction.cashbackPercent}% cashback`;
-      case 'referral':
-        return `Level ${transaction.referralLevel} referral bonus`;
-      case 'withdrawal':
-        return transaction.method || 'Bank transfer';
+      case 'Sifariş':
+        return `${transaction.cashbackPercent}% kəşbek`;
+      case 'Referal':
+        return `Level ${transaction.referralLevel} referal bonusu`;
+      case 'Çıxarış':
+        return transaction.method || 'Bank əməliyyatı';
       default:
         return '';
     }
@@ -79,7 +79,7 @@ export default function CashbackHistoryItem({ transaction }: CashbackHistoryItem
           weight="semibold" 
           style={[styles.amount, { color: getAmountColor() }]}
         >
-          {transaction.type === 'withdrawal' ? '-' : '+'}${transaction.amount.toFixed(2)}
+          {transaction.type === 'Çıxarış' ? '-' : '+'}${transaction.amount.toFixed(2)}
         </Text>
       </View>
     </View>

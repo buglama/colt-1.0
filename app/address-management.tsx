@@ -16,12 +16,12 @@ export default function AddressManagementScreen() {
     const addresses = [
         {
             id: 1,
-            label: 'Home',
+            label: 'Ev',
             details: '123 Bakı küçəsi, Yasamal, Baku',
         },
         {
             id: 2,
-            label: 'Work',
+            label: 'İş',
             details: '28 May, Nərimanov rayonu, Baku',
         },
     ];
@@ -31,7 +31,7 @@ export default function AddressManagementScreen() {
             <ScrollView contentContainerStyle={styles.scrollContent}>
                 <View style={styles.header}>
                     <Text variant="h3" weight="bold">
-                        My Addresses
+                        Mənim ünvanlarım
                     </Text>
                 </View>
 
@@ -66,7 +66,7 @@ export default function AddressManagementScreen() {
                 >
                     <PlusCircle size={20} color={colors.white} />
                     <Text variant="body" weight="medium" color="white" style={styles.addText}>
-                        Add New Address
+                        Yeni ünvan əlavə et
                     </Text>
                 </TouchableOpacity>
             </ScrollView>

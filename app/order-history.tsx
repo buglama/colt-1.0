@@ -10,19 +10,19 @@ const sampleOrders = [
         id: 1,
         date: '2025-05-10',
         total: '30.00 AZN',
-        status: 'Completed',
+        status: 'Tamamlandı',
     },
     {
         id: 2,
         date: '2025-05-08',
         total: '50.00 AZN',
-        status: 'Pending',
+        status: 'Gözlənilir',
     },
     {
         id: 3,
         date: '2025-05-05',
         total: '25.00 AZN',
-        status: 'Completed',
+        status: 'Tamamlandı',
     },
 ];
 
@@ -38,7 +38,7 @@ export default function OrderHistoryScreen() {
     }, []);
 
     const handleOrderClick = (orderId: number) => {
-        Alert.alert(`Order ${orderId}`, 'More details coming soon!');
+        Alert.alert(`Sifariş ${orderId}`, 'Təfərrüatlar tezliklə gələcək!');
     };
 
 
@@ -49,7 +49,7 @@ export default function OrderHistoryScreen() {
                     <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
                         <ChevronLeft size={24} color={colors.text} />
                     </TouchableOpacity>
-                    <Text variant="h3" weight="bold" style={styles.title}>Order History</Text>
+                    <Text variant="h3" weight="bold" style={styles.title}>Sifariş tarixçəsi</Text>
                 </View>
 
                 <View style={styles.ordersList}>
@@ -64,7 +64,7 @@ export default function OrderHistoryScreen() {
                                     {order.date}
                                 </Text>
                                 <Text variant="body" weight="medium" style={styles.orderTotal}>
-                                    Total: {order.total}
+                                    Cəmi: {order.total}
                                 </Text>
                                 <Text variant="body" weight="medium" style={styles.orderStatus}>
                                     Status: {order.status}

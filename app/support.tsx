@@ -24,10 +24,10 @@ export default function HelpSupportScreen() {
             <ScrollView contentContainerStyle={styles.content}>
                 <View style={styles.header}>
                     <Text variant="h3" weight="bold">
-                        Help & Support
+                        Kömək və Dəstək
                     </Text>
                     <Text variant="body" color="textSecondary" style={{ marginTop: 6 }}>
-                        Need help? Contact us or check the FAQ below.
+                        Köməyə ehtiyacınız var? Bizimlə əlaqə saxlayın və ya aşağıdakı FAQ bölməsinə baxın.
                     </Text>
                 </View>
 
@@ -37,30 +37,30 @@ export default function HelpSupportScreen() {
                     </Text>
 
                     <View style={styles.faqItem}>
-                        <Text variant="body" weight="medium">How can I reset my password?</Text>
+                        <Text variant="body" weight="medium">Şifrəmi necə dəyişə bilərəm?</Text>
                         <Text variant="caption" color="textSecondary">
-                            Go to Settings → Change Password to update it.
+                            Profilinizə daxil olun, "Şifrəni dəyiş" bölməsinə keçin və yeni şifrənizi daxil edin.
                         </Text>
                     </View>
 
                     <View style={styles.faqItem}>
-                        <Text variant="body" weight="medium">How to track my order?</Text>
+                        <Text variant="body" weight="medium">Sifarişlərimi necə izləyə bilərəm?</Text>
                         <Text variant="caption" color="textSecondary">
-                            Open Order History and tap on any order for details.
+                            Sifariş Tarixçəsini açın və təfərrüatlar üçün istənilən sifariş üzərinə toxunun.
                         </Text>
                     </View>
 
                     <View style={styles.faqItem}>
-                        <Text variant="body" weight="medium">Where can I add a new address?</Text>
+                        <Text variant="body" weight="medium">Yeni ünvanı necə əlavə edə bilərəm?</Text>
                         <Text variant="caption" color="textSecondary">
-                            Go to Address Management from your profile settings.
+                            Profilinizdə "Ünvanlar" bölməsinə keçin və "Yeni ünvan əlavə et" düyməsini basın.
                         </Text>
                     </View>
                 </View>
 
                 <View style={styles.card}>
                     <Text variant="h4" weight="semibold" style={styles.sectionTitle}>
-                        Contact Us
+                        Bizimlə əlaqə saxlayın
                     </Text>
 
                     <TouchableOpacity style={styles.contactItem} onPress={handleEmailPress}>

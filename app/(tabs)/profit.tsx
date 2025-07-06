@@ -26,7 +26,7 @@ export default function ProfitScreen() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'earnings' | 'withdrawals'>('all');
   
   const totalBalance = transactions.reduce((total, transaction) => {
-    if (transaction.type === 'withdrawal') {
+    if (transaction.type === 'Çıxarış') {
       return total - transaction.amount;
     } else {
       return total + transaction.amount;
@@ -34,17 +34,17 @@ export default function ProfitScreen() {
   }, 0);
   
   const totalEarned = transactions
-    .filter(t => t.type !== 'withdrawal')
+    .filter(t => t.type !== 'Çıxarış')
     .reduce((total, transaction) => total + transaction.amount, 0);
   
   const totalWithdrawn = transactions
-    .filter(t => t.type === 'withdrawal')
+    .filter(t => t.type === 'Çıxarış')
     .reduce((total, transaction) => total + transaction.amount, 0);
 
   const filteredTransactions = transactions.filter(transaction => {
     if (activeFilter === 'all') return true;
-    if (activeFilter === 'earnings') return transaction.type !== 'withdrawal';
-    if (activeFilter === 'withdrawals') return transaction.type === 'withdrawal';
+    if (activeFilter === 'earnings') return transaction.type !== 'Çıxarış';
+    if (activeFilter === 'withdrawals') return transaction.type === 'Çıxarış';
     return true;
   });
 
@@ -74,10 +74,10 @@ export default function ProfitScreen() {
       >
         <View style={styles.header}>
           <Text variant="h3" weight="bold" style={styles.title}>
-            Your Profit
+            Sənin qazancın
           </Text>
           <Text variant="body" color="textSecondary">
-            Track your cashback earnings & withdrawals
+            Kəşbek qazanclarınızı və çıxarışlarınızı izləyin.
           </Text>
         </View>
         
@@ -85,7 +85,7 @@ export default function ProfitScreen() {
           <Card style={styles.balanceCard}>
             <View style={styles.balanceHeader}>
               <Text variant="body" weight="medium" color="textSecondary">
-                Available Balance
+                Mövcud Balans
               </Text>
               <Wallet size={24} color={colors.primary} />
             </View>
@@ -108,7 +108,7 @@ export default function ProfitScreen() {
               <View style={styles.statItem}>
                 <View style={styles.statHeader}>
                   <Text variant="body2" weight="medium" color="textSecondary">
-                    Total Earned
+                    Ümumi qazanc
                   </Text>
                   <View style={[styles.statIconContainer, styles.earnedIconContainer]}>
                     <ArrowUpRight size={16} color={colors.success} />
@@ -122,7 +122,7 @@ export default function ProfitScreen() {
               <View style={styles.statItem}>
                 <View style={styles.statHeader}>
                   <Text variant="body2" weight="medium" color="textSecondary">
-                    Total Withdrawn
+                    Ümumi çıxarış
                   </Text>
                   <View style={[styles.statIconContainer, styles.withdrawnIconContainer]}>
                     <ArrowDownToLine size={16} color={colors.danger} />
@@ -138,7 +138,7 @@ export default function ProfitScreen() {
         
         <View style={styles.historySection}>
           <Text variant="h4" weight="semibold" style={styles.sectionTitle}>
-            Transaction History
+            Əməliyyat Tarixçəsi
           </Text>
           
           <View style={styles.filterContainer}>
@@ -154,7 +154,7 @@ export default function ProfitScreen() {
                 weight={activeFilter === 'all' ? 'semibold' : 'regular'}
                 color={activeFilter === 'all' ? 'primary' : 'textSecondary'}
               >
-                All
+                Hamısı
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -169,7 +169,7 @@ export default function ProfitScreen() {
                 weight={activeFilter === 'earnings' ? 'semibold' : 'regular'}
                 color={activeFilter === 'earnings' ? 'primary' : 'textSecondary'}
               >
-                Earnings
+                Qazanc
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -184,7 +184,7 @@ export default function ProfitScreen() {
                 weight={activeFilter === 'withdrawals' ? 'semibold' : 'regular'}
                 color={activeFilter === 'withdrawals' ? 'primary' : 'textSecondary'}
               >
-                Withdrawals
+                Çıxarış
               </Text>
             </TouchableOpacity>
           </View>
@@ -200,7 +200,7 @@ export default function ProfitScreen() {
             ) : (
               <View style={styles.emptyContainer}>
                 <Text variant="body" color="textSecondary" style={styles.emptyText}>
-                  No transactions found.
+                  Heç bir əməliyyat tapılmadı.
                 </Text>
               </View>
             )}

@@ -36,13 +36,13 @@ export default function SettingsScreen() {
             >
                 <View style={styles.header}>
                     <Text variant="h3" weight="bold" style={styles.title}>
-                        Settings
+                        Tənzimləmələr
                     </Text>
                 </View>
 
                 <View style={styles.sectionTitle}>
                     <Text variant="h4" weight="semibold">
-                        Preferences
+                        Seşimlər
                     </Text>
                 </View>
 
@@ -53,10 +53,10 @@ export default function SettingsScreen() {
                         </View>
                         <View style={styles.menuContent}>
                             <Text variant="body" weight="medium">
-                                Notifications
+                                Bildirişlər
                             </Text>
                             <Text variant="caption" color="textSecondary">
-                                Enable push notifications
+                                Bildirişləri idarə et
                             </Text>
                         </View>
                         <Switch
@@ -75,10 +75,10 @@ export default function SettingsScreen() {
                         </View>
                         <View style={styles.menuContent}>
                             <Text variant="body" weight="medium">
-                                Change Password
+                                Şifrəni dəyiş
                             </Text>
                             <Text variant="caption" color="textSecondary">
-                                Update your account password
+                                Şifrənizi yeniləyin
                             </Text>
                         </View>
                         <ChevronRight size={20} color={colors.textSecondary} />
@@ -92,10 +92,10 @@ export default function SettingsScreen() {
                         </View>
                         <View style={styles.menuContent}>
                             <Text variant="body" weight="medium">
-                                Manage Profile
+                                Profili idarə et
                             </Text>
                             <Text variant="caption" color="textSecondary">
-                                Update your personal information
+                                Şəxsi məlumatlarınızı yeniləyin
                             </Text>
                         </View>
                         <ChevronRight size={20} color={colors.textSecondary} />
@@ -109,10 +109,10 @@ export default function SettingsScreen() {
                         </View>
                         <View style={styles.menuContent}>
                             <Text variant="body" weight="medium">
-                                App Settings
+                                Tətbiq tənzimləmələri
                             </Text>
                             <Text variant="caption" color="textSecondary">
-                                Configure your app preferences
+                                Tətbiq seçimlərinizi konfiqurasiya edin
                             </Text>
                         </View>
                         <ChevronRight size={20} color={colors.textSecondary} />
@@ -126,10 +126,10 @@ export default function SettingsScreen() {
                         </View>
                         <View style={styles.menuContent}>
                             <Text variant="body" weight="medium">
-                                Dark Mode
+                                Qaranlıq rejim
                             </Text>
                             <Text variant="caption" color="textSecondary">
-                                Switch to dark mode
+                                Qaranlıq rejimi aktivləşdirin
                             </Text>
                         </View>
                         <Switch
@@ -147,7 +147,7 @@ export default function SettingsScreen() {
                         onPress={() => router.replace('/login')}
                     >
                         <Text variant="body" weight="medium" color="danger">
-                            Logout
+                            Çıxış et
                         </Text>
                     </TouchableOpacity>
                 </View>

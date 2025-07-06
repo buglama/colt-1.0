@@ -27,22 +27,22 @@ export default function GiveFeedbackScreen() {
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.content}>
                 <View style={styles.header}>
-                    <Text variant="h3" weight="bold">Give Feedback</Text>
+                    <Text variant="h3" weight="bold">Rəy bildir</Text>
                     <Text variant="body" color="textSecondary" style={{ marginTop: 6 }}>
-                        We’d love to hear your thoughts or suggestions 💬
+                        Sizin təklif və düşüncələriniz bizim üçün önəmlidir 💬
                     </Text>
                 </View>
 
                 <View style={styles.card}>
                     <Text variant="h4" weight="semibold" style={styles.sectionTitle}>
-                        Your Message
+                        Fikrini bizimlə bölüş
                     </Text>
 
                     <TextInput
                         style={styles.input}
                         multiline
                         numberOfLines={6}
-                        placeholder="Write your feedback here..."
+                        placeholder="Geri dönüşünü yaz..."
                         placeholderTextColor="#aaa"
                         value={feedback}
                         onChangeText={setFeedback}
@@ -50,7 +50,7 @@ export default function GiveFeedbackScreen() {
 
                     <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                         <Text variant="body" weight="semibold" style={{ color: '#fff' }}>
-                            Submit
+                            Təqdim et
                         </Text>
                     </TouchableOpacity>
                 </View>

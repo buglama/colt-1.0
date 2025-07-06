@@ -44,7 +44,7 @@ export default function ReferralScreen() {
   const handleShareReferralCode = async () => {
     try {
       await Share.share({
-        message: `Join me on Food Delivery App and get bonus cashback! Use my referral code: ${referralCode}`,
+        message: `Colt tətbiqində mənə qoşulun və bonus cashback qazanın! İstifadə kodumdan istifadə edin: ${referralCode}`,
       });
     } catch (error) {
       console.log('Error sharing:', error);
@@ -70,7 +70,7 @@ export default function ReferralScreen() {
               {item.name}
             </Text>
             <Text variant="caption" color="textSecondary">
-              Joined {item.joinedDate}
+              Qatıldı {item.joinedDate}
             </Text>
           </View>
           <View style={styles.referredUserEarnings}>
@@ -99,17 +99,17 @@ export default function ReferralScreen() {
       >
         <View style={styles.header}>
           <Text variant="h3" weight="bold" style={styles.title}>
-            Referrals
+            Referallar
           </Text>
           <Text variant="body" color="textSecondary">
-            Invite friends & earn cashback together
+            Dostlarını dəvət et & Birlikdə kəşbək qazanın
           </Text>
         </View>
         
         <Animated.View entering={FadeIn.delay(200).duration(500)}>
           <Card style={styles.referralCodeCard}>
             <Text variant="body" weight="medium" color="textSecondary">
-              Your Referral Code
+              Sənin referal kodun
             </Text>
             <View style={styles.codeContainer}>
               <Text variant="h2" weight="bold" color="primary" style={styles.code}>
@@ -122,13 +122,13 @@ export default function ReferralScreen() {
                 <Copy size={20} color={copied ? colors.success : colors.primary} />
                 {copied && (
                   <Text variant="caption" color="success" style={styles.copiedText}>
-                    Copied!
+                    Köçürüldü!
                   </Text>
                 )}
               </TouchableOpacity>
             </View>
             <Button
-              title="Share Your Code"
+              title="Dəvət Kodunuzu Paylaşın"
               variant="primary"
               leftIcon={<ShareIcon size={18} color="white" />}
               fullWidth
@@ -145,7 +145,7 @@ export default function ReferralScreen() {
                   {referredUsers.length}
                 </Text>
                 <Text variant="body2" color="textSecondary">
-                  Friends Referred
+                  Dəvət edilmiş dostlar
                 </Text>
               </View>
               <View style={styles.statDivider} />
@@ -154,7 +154,7 @@ export default function ReferralScreen() {
                   ${totalEarnings.toFixed(2)}
                 </Text>
                 <Text variant="body2" color="textSecondary">
-                  Total Earnings
+                  Cəmi qazanc
                 </Text>
               </View>
             </View>
@@ -164,7 +164,7 @@ export default function ReferralScreen() {
         <Animated.View entering={FadeIn.delay(400).duration(500)}>
           <View style={styles.section}>
             <Text variant="h4" weight="semibold" style={styles.sectionTitle}>
-              Referral System
+              Referal sistemi
             </Text>
             <ReferralPyramid referralChain={referralChain} />
           </View>
@@ -172,7 +172,7 @@ export default function ReferralScreen() {
         
         <View style={styles.section}>
           <Text variant="h4" weight="semibold" style={styles.sectionTitle}>
-            Your Referred Friends
+            Sənin referalların 
           </Text>
           
           {referredUsers.length > 0 ? (
@@ -185,7 +185,7 @@ export default function ReferralScreen() {
           ) : (
             <Card style={styles.emptyCard}>
               <Text variant="body" color="textSecondary" style={styles.emptyText}>
-                You haven't referred any friends yet. Share your referral code to start earning!
+                Siz hələ heç bir dostunuzu dəvət etməmisiniz. Qazanmağa başlamaq üçün referal kodunuzu paylaşın!
               </Text>
               <Button
                 title="Share Now"

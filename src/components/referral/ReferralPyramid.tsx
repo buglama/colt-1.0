@@ -28,7 +28,6 @@ export default function ReferralPyramid({ referralChain }: ReferralPyramidProps)
   const level3Scale = useSharedValue(0.5);
 
   React.useEffect(() => {
-    // Animate the pyramid levels with a staggered effect
     level1Opacity.value = withTiming(1, { duration: 600 });
     level1Scale.value = withTiming(1, { duration: 600 });
     
@@ -72,7 +71,7 @@ export default function ReferralPyramid({ referralChain }: ReferralPyramidProps)
           ]}
         >
           <Text variant="caption" weight="semibold" color="white" style={styles.levelText}>
-            Level 3 (You) - 3%
+            Səviyyə 3 (You) - 3%
           </Text>
           <Text variant="caption" color="white" numberOfLines={1} style={styles.nameText}>
             {referralChain[2]?.name || 'You'}
@@ -88,7 +87,7 @@ export default function ReferralPyramid({ referralChain }: ReferralPyramidProps)
           ]}
         >
           <Text variant="caption" weight="semibold" color="white" style={styles.levelText}>
-            Level 2 - 2%
+            Səviyyə 2 - 2%
           </Text>
           <Text variant="caption" color="white" numberOfLines={1} style={styles.nameText}>
             {referralChain[1]?.name || 'Direct Referrer'}
@@ -104,7 +103,7 @@ export default function ReferralPyramid({ referralChain }: ReferralPyramidProps)
           ]}
         >
           <Text variant="caption" weight="semibold" color="white" style={styles.levelText}>
-            Level 1 - 1%
+            Səviyyə 1 - 1%
           </Text>
           <Text variant="caption" color="white" numberOfLines={1} style={styles.nameText}>
             {referralChain[0]?.name || 'Indirect Referrer'}
@@ -114,27 +113,27 @@ export default function ReferralPyramid({ referralChain }: ReferralPyramidProps)
       
       <View style={styles.legendContainer}>
         <Text variant="body2" weight="semibold" style={styles.legendTitle}>
-          How Cashback Works
+          Kəşbek sistemi necə işləyir
         </Text>
         <Text variant="caption" color="textSecondary" style={styles.legendText}>
-          When you place an order, cashback is distributed across all three levels:
+          Sifariş verdiyiniz zaman cashback hər üç səviyyədə paylanır:
         </Text>
         <View style={styles.legendItem}>
           <View style={[styles.legendDot, { backgroundColor: colors.primary }]} />
           <Text variant="body2">
-            You receive 3% cashback
+            3% kəşbek alırsınız
           </Text>
         </View>
         <View style={styles.legendItem}>
           <View style={[styles.legendDot, { backgroundColor: colors.secondary }]} />
           <Text variant="body2">
-            Your direct referrer receives 2%
+            Sizin birbaşa referalınız 2% alır
           </Text>
         </View>
         <View style={styles.legendItem}>
           <View style={[styles.legendDot, { backgroundColor: colors.tertiary }]} />
           <Text variant="body2">
-            Your indirect referrer receives 1%
+            Sizin dolayı referalınız 1% alır
           </Text>
         </View>
       </View>

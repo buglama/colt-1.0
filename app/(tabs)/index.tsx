@@ -25,29 +25,58 @@ const offerImages = [
   {
     id: '1',
     image: 'https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&w=800&q=80',
-    title: '20% OFF on First Order!',
+    title: 'İlk sifarişdə 20% endirim!',
   },
   {
     id: '2',
     image: 'https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=800&q=80',
-    title: 'Free Delivery This Week',
+    title: 'Bu həftə sonu xüsusi endirimlər',
   },
   {
     id: '3',
     image: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&w=800&q=80',
-    title: 'Buy 1 Get 1 Free',
+    title: 'Bir ödə, birini pulsuz al!',
   },
   {
     id: '4',
     image: 'https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=800&q=80',
-    title: 'Pizza Night Special',
+    title: 'Sürətli çatdırılma + 10% endirim',
   },
   {
     id: '5',
     image: 'https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=800&q=80',
-    title: 'Sushi Lovers Discount',
+    title: 'Yeni menyu təqdimatı - 15% endirim',
   },
 ];
+
+const popularRestaurants = [
+  {
+    id: 'kfc',
+    name: 'KFC',
+    imageUrl: 'https://mma.prnewswire.com/media/2263790/KFC_Logo.jpg?p=publish',
+  },
+  {
+    id: 'mcdonalds',
+    name: 'McDonald\'s',
+    imageUrl: 'https://hipfonts.com/wp-content/uploads/2022/08/McDonalds-logo-cover.jpg',
+  },
+  {
+    id: 'byhollywood',
+    name: 'By Hollywood',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8L11GAEDpwJ-wjtzqcyvnoL5Zc5jbdJk2pg&s',
+  },
+  {
+    id: 'shaurma_no1',
+    name: 'Shaurma No1',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2utlHhHObilp_KIOEVKpPOm_iROgLEPJrYg&s',
+  },
+  {
+    id: 'borani',
+    name: 'Borani',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmg6YrfolWPXiQAQIz0s473J174_G0za4lwA&s',
+  },
+];
+
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const CAROUSEL_ITEM_HEIGHT = 200;
@@ -64,7 +93,6 @@ export default function HomeScreen() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>(mockFeaturedProducts);
   const [categories, setCategories] = useState<Category[]>(mockCategories);
 
-  // Always show all restaurants, no filtering
   const filteredRestaurants = restaurants;
 
   const renderCategoryItem = ({ item }: { item: Category }) => (
@@ -96,7 +124,6 @@ export default function HomeScreen() {
 
   const handleRefresh = async () => {
     setRefreshing(true);
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     setRefreshing(false);
   };
@@ -121,7 +148,6 @@ export default function HomeScreen() {
   useEffect(() => {
     if (scrollRef.current) {
       if (currentIndex === 0) {
-        // Instantly jump to first image (no animation)
         scrollRef.current.scrollTo({ x: 0, animated: false });
       } else {
         scrollRef.current.scrollTo({
@@ -147,21 +173,21 @@ export default function HomeScreen() {
         <View style={styles.header}>
           <View style={styles.locationContainer}>
             <MapPin size={18} color={colors.primary} />
-            <Text variant="body2" weight="medium" style={styles.locationText}>
-              Delivering to
-            </Text>
             <TouchableOpacity>
               <Text variant="body2" weight="semibold" color="primary">
-                Current Location ▼
+                Hazırki məkana ▼
               </Text>
             </TouchableOpacity>
+            <Text variant="body2" weight="medium" style={styles.locationText}>
+              Çatdırılır
+            </Text>
           </View>
 
           <View style={styles.searchContainer}>
             <Search size={20} color={colors.textSecondary} style={styles.searchIcon} />
             <TextInput
               style={styles.searchInput}
-              placeholder="Search for restaurants or dishes"
+              placeholder="Restoran və ya məhsul axtar"
               value={searchQuery}
               onChangeText={setSearchQuery}
             />
@@ -227,16 +253,16 @@ export default function HomeScreen() {
 
         <View style={styles.section}>
           <Text variant="h4" weight="semibold" style={styles.sectionTitle}>
-            Featured Products
+            Populyar Restoranlar
           </Text>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.featuredProductsContainer}
           >
-            {featuredProducts.map((product, index) => (
+            {popularRestaurants.map((restaurant, index) => (
               <Animated.View
-                key={product.id}
+                key={restaurant.id}
                 entering={FadeInDown.delay(index * 100).springify()}
                 style={styles.featuredProductItem}
               >
@@ -244,29 +270,25 @@ export default function HomeScreen() {
                   activeOpacity={0.8}
                   onPress={() =>
                     router.push({
-                      pathname: '/restaurant/[id]/product/[productId]',
+                      pathname: '/restaurant/[id]',
                       params: {
-                        id: product.restaurantId!,
-                        productId: product.id!,
+                        id: restaurant.id,
                       },
                     })
                   }
                 >
                   <View style={styles.featuredProductCard}>
                     <Image
-                      source={{ uri: product.imageUrl }}
+                      source={{ uri: restaurant.imageUrl }}
                       style={styles.featuredProductImage}
                       resizeMode="cover"
                     />
                     <View style={styles.featuredProductContent}>
                       <Text variant="body2" weight="semibold" numberOfLines={1}>
-                        {product.name}
+                        {restaurant.name}
                       </Text>
                       <Text variant="caption" color="textSecondary" numberOfLines={1}>
-                        {product.restaurant}
-                      </Text>
-                      <Text variant="body2" weight="semibold" color="primary">
-                        ${product.price.toFixed(2)}
+                        Popular
                       </Text>
                     </View>
                   </View>
@@ -275,6 +297,7 @@ export default function HomeScreen() {
             ))}
           </ScrollView>
         </View>
+
 
         <View style={styles.section}>
           <Text variant="h4" weight="semibold" style={styles.sectionTitle}>

@@ -5,7 +5,8 @@ import Text from '@/src/components/ui/Text';
 export default function OrderConfirmationScreen() {
   return (
     <View style={styles.container}>
-      <Text>Order Confirmation Screen</Text>
+      <Text>Sifariş təstiq ekranı</Text>
+      <Text>TEST</Text>
     </View>
   );
 }

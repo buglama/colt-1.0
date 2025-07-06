@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 interface User {
   id: string;
@@ -30,30 +30,23 @@ const initialUser: User = {
   referredBy: null,
 };
 
-export function UserProvider({ children }: { children: React.ReactNode }) {
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    // !! DƏYİŞMƏLİ
-    setUser(null);
-    setIsAuthenticated(false);
-  }, []);
-
   const login = async (email: string, password: string) => {
-    // !! API CALL
+    if (isAuthenticated) return; // artıq login-disə, ikinci dəfə işə düşməsin
     await new Promise(resolve => setTimeout(resolve, 1000));
+
     setUser(initialUser);
     setIsAuthenticated(true);
   };
 
   const signup = async (fullName: string, email: string, password: string, phone: string) => {
-    // !! API CALL
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // !! REFERRAL KOD RANDOM OLMADAN
+
     const referralCode = `FOOD${Math.floor(1000 + Math.random() * 9000)}`;
-    
+
     setUser({
       id: String(Date.now()),
       fullName,
@@ -62,36 +55,27 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       referralCode,
       referredBy: null,
     });
-    
+
     setIsAuthenticated(true);
   };
 
   const updateReferralCode = async (referralCode: string) => {
-    // !! API CALL
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     if (user) {
-      setUser({
-        ...user,
-        referredBy: referralCode,
-      });
+      setUser({ ...user, referredBy: referralCode });
     }
   };
 
   const updateUser = async (updates: Partial<User>) => {
-    // !! API CALL
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     if (user) {
-      setUser({
-        ...user,
-        ...updates,
-      });
+      setUser({ ...user, ...updates });
     }
   };
 
   const logout = () => {
-    // !! CLEAR TOKENS
     setUser(null);
     setIsAuthenticated(false);
   };
@@ -111,12 +95,12 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       {children}
     </UserContext.Provider>
   );
-}
+};
 
-export function useUser() {
+export const useUser = () => {
   const context = useContext(UserContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useUser must be used within a UserProvider');
   }
   return context;
-}
+};

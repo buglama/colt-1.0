@@ -66,7 +66,7 @@ export interface Order {
   restaurantId: string;
   restaurantName: string;
   items: CartItem[];
-  status: 'pending' | 'preparing' | 'delivering' | 'delivered' | 'cancelled';
+  status: 'Gözlənilir' | 'Hazırlanır' | 'Çatdırılır' | 'Çatdırıldı' | 'Ləğv edildi';
   total: number;
   subtotal: number;
   deliveryFee: number;
@@ -93,7 +93,7 @@ export interface ReferralUser {
 
 export interface CashbackTransaction {
   id: string;
-  type: 'order' | 'referral' | 'withdrawal';
+  type: 'Sifariş' | 'Referal' | 'Çıxarış';
   amount: number;
   date: string;
   orderId?: string;

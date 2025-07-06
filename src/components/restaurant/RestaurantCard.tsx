@@ -52,7 +52,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
             <View style={styles.infoItem}>
               <Clock size={14} color={colors.textSecondary} />
               <Text variant="caption" color="textSecondary" style={styles.infoText}>
-                {restaurant.deliveryTime} min
+                {restaurant.deliveryTime} dəqiqə
               </Text>
             </View>
             <View style={styles.infoItem}>
@@ -63,7 +63,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
             <View style={styles.infoItem}>
               <Text variant="caption" color="textSecondary" style={styles.infoText}>
                 {restaurant.deliveryFee === 0 
-                  ? 'Free delivery' 
+                  ? 'Pulsuz çatdırılma' 
                   : `$${restaurant.deliveryFee.toFixed(2)}`}
               </Text>
             </View>

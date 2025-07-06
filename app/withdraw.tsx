@@ -33,31 +33,31 @@ export default function WithdrawScreen() {
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.content}>
                 <View style={styles.header}>
-                    <Text variant="h3" weight="bold">Withdraw</Text>
+                    <Text variant="h3" weight="bold">Çıxarış</Text>
                     <Text variant="body" color="textSecondary" style={{ marginTop: 6 }}>
-                        Transfer your cashback balance to your account.
+                        Kəşbek balansınızı hesabınıza köçürün.
                     </Text>
                 </View>
 
                 <View style={styles.card}>
-                    <Text variant="body" weight="medium" style={styles.label}>Available Balance</Text>
+                    <Text variant="body" weight="medium" style={styles.label}>Mövcud balans</Text>
                     <Text variant="h3" weight="bold" style={styles.balance}>
                         {currentBalance.toFixed(2)} AZN
                     </Text>
 
-                    <Text variant="body" weight="medium" style={styles.label}>Withdraw Amount</Text>
+                    <Text variant="body" weight="medium" style={styles.label}>Çıxarış məbləği</Text>
                     <TextInput
                         style={styles.input}
                         value={amount}
                         onChangeText={setAmount}
-                        placeholder="e.g. 25"
+                        placeholder="Məsələn 25"
                         keyboardType="numeric"
                         placeholderTextColor="#aaa"
                     />
 
                     <TouchableOpacity style={styles.button} onPress={handleWithdraw}>
                         <Text variant="body" weight="semibold" style={{ color: '#fff' }}>
-                            Withdraw
+                            Çıxarış et
                         </Text>
                     </TouchableOpacity>
                 </View>

@@ -21,15 +21,15 @@ export default function ProfileScreen() {
 
   const handleLogout = () => {
     Alert.alert(
-      'Logout',
-      'Are you sure you want to logout?',
+      'Çıxış et',
+      'Çıxış etmək istədiyinizdən əminsiz?',
       [
         {
-          text: 'Cancel',
+          text: 'İmtina et',
           style: 'cancel',
         },
         {
-          text: 'Logout',
+          text: 'Çıxış et',
           onPress: () => {
             logout();
             router.replace('/login');
@@ -64,7 +64,7 @@ export default function ProfileScreen() {
       >
         <View style={styles.header}>
           <Text variant="h3" weight="bold" style={styles.title}>
-            Profile
+            Profil
           </Text>
         </View>
 
@@ -91,14 +91,14 @@ export default function ProfileScreen() {
             onPress={handleEditProfile}
           >
             <Text variant="body2" weight="semibold" color="primary">
-              Edit
+              Düzəliş et
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.sectionTitle}>
           <Text variant="h4" weight="semibold">
-            Account
+            Hesab
           </Text>
         </View>
 
@@ -112,10 +112,10 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuContent}>
               <Text variant="body" weight="medium">
-                Addresses
+                Ünvanlar
               </Text>
               <Text variant="caption" color="textSecondary">
-                Manage delivery addresses
+                Çatdırılma ünvanlarını idarə edin
               </Text>
             </View>
             <ChevronRight size={20} color={colors.textSecondary} />
@@ -132,10 +132,10 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuContent}>
               <Text variant="body" weight="medium">
-                Payment Methods
+                Ödəniş üsulları
               </Text>
               <Text variant="caption" color="textSecondary">
-                Add or remove payment options
+                Ödəniş kartlarını və hesabları əlavə edin
               </Text>
             </View>
             <ChevronRight size={20} color={colors.textSecondary} />
@@ -152,10 +152,10 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuContent}>
               <Text variant="body" weight="medium">
-                Order History
+                Sifariş Tarixçəsi
               </Text>
               <Text variant="caption" color="textSecondary">
-                View past orders and reorder
+                Keçmiş sifarişlərinizə baxın
               </Text>
             </View>
             <ChevronRight size={20} color={colors.textSecondary} />
@@ -164,7 +164,7 @@ export default function ProfileScreen() {
 
         <View style={styles.sectionTitle}>
           <Text variant="h4" weight="semibold">
-            Preferences
+            Seçimlər
           </Text>
         </View>
 
@@ -175,10 +175,10 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuContent}>
               <Text variant="body" weight="medium">
-                Notifications
+                Bildirişlər
               </Text>
               <Text variant="caption" color="textSecondary">
-                Enable push notifications
+                Bildirişləri idarə edin
               </Text>
             </View>
             <Switch
@@ -200,10 +200,10 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuContent}>
               <Text variant="body" weight="medium">
-                Settings
+                Tənzimləmələr
               </Text>
               <Text variant="caption" color="textSecondary">
-                App preferences and more
+                Tətbiq tənzimləmələrini idarə edin
               </Text>
             </View>
             <ChevronRight size={20} color={colors.textSecondary} />
@@ -212,7 +212,7 @@ export default function ProfileScreen() {
 
         <View style={styles.sectionTitle}>
           <Text variant="h4" weight="semibold">
-            Support
+            Dəstək
           </Text>
         </View>
 
@@ -226,10 +226,10 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuContent}>
               <Text variant="body" weight="medium">
-                Help & Support
+                Kömək və Dəstək
               </Text>
               <Text variant="caption" color="textSecondary">
-                Get help with your orders
+                Tez-tez verilən suallar və dəstək
               </Text>
             </View>
             <ChevronRight size={20} color={colors.textSecondary} />
@@ -246,10 +246,10 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuContent}>
               <Text variant="body" weight="medium">
-                Give Feedback
+                Rəy və Qiymətləndirmə
               </Text>
               <Text variant="caption" color="textSecondary">
-                Rate your experience
+                Tətbiq haqqında rəy bildirin
               </Text>
             </View>
             <ChevronRight size={20} color={colors.textSecondary} />
@@ -262,12 +262,12 @@ export default function ProfileScreen() {
         >
           <LogOut size={20} color={colors.danger} />
           <Text variant="body" weight="medium" color="danger" style={styles.logoutText}>
-            Logout
+            Çıxış et
           </Text>
         </TouchableOpacity>
 
         <Text variant="caption" color="textSecondary" style={styles.versionText}>
-          Version 1.0.0
+          Versiya 1.0.0
         </Text>
       </ScrollView>
     </View>
